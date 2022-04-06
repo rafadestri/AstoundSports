@@ -49,6 +49,24 @@ namespace AstoundSports.Controllers
             return CreatedAtRoute("SportById", new { id = sportToReturn.Id }, sportToReturn);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSport(Guid id)
+        {
+            var sport = await _repository.Sport.GetSportAsync(id, trackChanges: false);
+
+            if (sport == null)
+            {
+                _logger.LogInfo($"Sport with id: {id} doesn't exist in the database.");
+
+                return NotFound();
+            }
+
+            _repository.Sport.DeleteSport(sport);
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
         [HttpGet("{id}", Name = "SportById")]
         public async Task<IActionResult> GetSport(Guid id)
         {

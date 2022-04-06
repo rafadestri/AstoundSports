@@ -49,10 +49,28 @@ namespace AstoundSports.Controllers
             return CreatedAtRoute("AthleteById", new { id = athleteToReturn.Id }, athleteToReturn);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAthlete(Guid id)
+        {
+            var athlete = await _repository.Athlete.GetAthleteAsync(id, trackChanges: false);
+
+            if (athlete == null)
+            {
+                _logger.LogInfo($"Athlete with id: {id} doesn't exist in the database.");
+
+                return NotFound();
+            }
+
+            _repository.Athlete.DeleteAthlete(athlete);
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
         [HttpGet("{id}", Name = "AthleteById")]
         public async Task<IActionResult> GetAthlete(Guid id)
         {
-            var athlete = await _repository.Athlete.GetAhtleteAsync(id, trackChanges: false);
+            var athlete = await _repository.Athlete.GetAthleteAsync(id, trackChanges: false);
 
             if (athlete == null)
             {

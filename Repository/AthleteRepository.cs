@@ -19,7 +19,7 @@ namespace Repository
 
         public void DeleteAthlete(Athlete athlete) => Delete(athlete);
 
-        public async Task<Athlete> GetAhtleteAsync(Guid id, bool trackChanges) => await FindByCondition(a => a.Id.Equals(id), trackChanges)
+        public async Task<Athlete> GetAthleteAsync(Guid id, bool trackChanges) => await FindByCondition(a => a.Id.Equals(id), trackChanges)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Athlete>> GetAthletesAsync(bool trackChanges) => await FindAll(trackChanges).OrderBy(a => a.Name).ToListAsync();

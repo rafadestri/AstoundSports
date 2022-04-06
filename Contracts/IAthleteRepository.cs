@@ -11,7 +11,7 @@ namespace Contracts
 
         void DeleteAthlete(Athlete athlete);
 
-        Task<Athlete> GetAhtleteAsync(Guid id, bool trackChanges);
+        Task<Athlete> GetAthleteAsync(Guid id, bool trackChanges);
 
         Task<IEnumerable<Athlete>> GetAthletesAsync(bool trackChanges);
     }
