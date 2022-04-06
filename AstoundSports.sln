@@ -18,6 +18,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{F217BD04-F48B-4ABC-94FE-451F22B2C282}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{45F6D851-2658-4498-8227-E1EF6435E0C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance", "{A08E2FA7-1CF8-48FE-BF7C-A70B7518FAD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{90148CC1-46ED-4E23-92A4-627274BFFC44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{E88CE59D-517D-44A6-B25C-91863A1B1312}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +55,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BE3C39FF-9AEB-4997-A4E0-97CF29C989C3} = {45F6D851-2658-4498-8227-E1EF6435E0C2}
+		{9C7E4B9F-DCE9-4EB3-A50D-F9A7365EE303} = {90148CC1-46ED-4E23-92A4-627274BFFC44}
+		{5E31A810-4CB8-41EA-8E57-6654138AD0B4} = {90148CC1-46ED-4E23-92A4-627274BFFC44}
+		{85DEDF49-C92E-4E09-A3F8-C9899BCEF939} = {E88CE59D-517D-44A6-B25C-91863A1B1312}
+		{F217BD04-F48B-4ABC-94FE-451F22B2C282} = {A08E2FA7-1CF8-48FE-BF7C-A70B7518FAD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A83A0063-6A22-4780-AB6B-F12778295578}
