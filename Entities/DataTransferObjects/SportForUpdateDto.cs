@@ -1,6 +1,6 @@
 ﻿namespace Entities.DataTransferObjects
 {
-    public class SportForCreationDto
+    public class SportForUpdateDto
     {
         public int CaloriesBurntByMinute { get; set; }
 

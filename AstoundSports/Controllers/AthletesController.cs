@@ -92,5 +92,33 @@ namespace AstoundSports.Controllers
 
             return Ok(atheletsDto);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAthlete(Guid id, [FromBody] AthleteForUpdateDto athlete)
+        {
+            if (athlete == null)
+            {
+                _logger.LogError("Athlete for update object sent from cliente is null.");
+                return BadRequest("AthleteForUpdateDto is null.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the AthleteForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
+            var athleteEntity = await _repository.Athlete.GetAthleteAsync(id, trackChanges: true);
+            if (athleteEntity == null)
+            {
+                _logger.LogInfo($"Athlete with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _mapper.Map(athlete, athleteEntity);
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
     }
 }

@@ -8,38 +8,37 @@ namespace Repository
     {
         private readonly RepositoryContext _repositoryContext;
 
-        private ISportRepository _companyRepository;
-
-        private IAthleteRepository _employeeRepository;
+        private IAthleteRepository _athleteRepository;
+        private ISportRepository _sportRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
         }
 
-        public ISportRepository Sport
-        {
-            get
-            {
-                if (_companyRepository == null)
-                {
-                    _companyRepository = new SportRepository(_repositoryContext);
-                }
-
-                return _companyRepository;
-            }
-        }
-
         public IAthleteRepository Athlete
         {
             get
             {
-                if (_employeeRepository == null)
+                if (_athleteRepository == null)
                 {
-                    _employeeRepository = new AthleteRepository(_repositoryContext);
+                    _athleteRepository = new AthleteRepository(_repositoryContext);
                 }
 
-                return _employeeRepository;
+                return _athleteRepository;
+            }
+        }
+
+        public ISportRepository Sport
+        {
+            get
+            {
+                if (_sportRepository == null)
+                {
+                    _sportRepository = new SportRepository(_repositoryContext);
+                }
+
+                return _sportRepository;
             }
         }
 

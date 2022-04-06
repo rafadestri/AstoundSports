@@ -1,6 +1,6 @@
 ﻿namespace Entities.DataTransferObjects
 {
-    public class AthleteForCreationDto
+    public class AthleteForUpdateDto
     {
         public int Age { get; set; }
 
