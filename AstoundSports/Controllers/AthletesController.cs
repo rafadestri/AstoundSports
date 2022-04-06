@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,31 @@ namespace AstoundSports.Controllers
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAthlete([FromBody] AthleteForCreationDto athlete)
+        {
+            if (athlete == null)
+            {
+                _logger.LogError("Athlete for creation object sent from cliente is null.");
+                return BadRequest("AthleteForCreationDto object is null.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the AthleteForCreationDto object.");
+                return UnprocessableEntity(ModelState);
+            }
+
+            var athleteEntity = _mapper.Map<Athlete>(athlete);
+
+            _repository.Athlete.CreateAthlete(athleteEntity);
+            await _repository.SaveAsync();
+
+            var athleteToReturn = _mapper.Map<AthleteDto>(athleteEntity);
+
+            return CreatedAtRoute("AthleteById", new { id = athleteToReturn.Id }, athleteToReturn);
         }
 
         [HttpGet("{id}", Name = "AthleteById")]

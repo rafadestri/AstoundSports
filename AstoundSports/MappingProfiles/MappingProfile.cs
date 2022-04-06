@@ -9,7 +9,9 @@ namespace AstoundSports.MappingProfiles
         public MappingProfile()
         {
             CreateMap<Sport, SportDto>();
+            CreateMap<SportForCreationDto, Sport>();
 
+            CreateMap<AthleteForCreationDto, Athlete>();
             CreateMap<Athlete, AthleteDto>().ForMember(a => a.FullName, opt => opt.MapFrom(o => string.Join(' ', o.Name, o.SurName)));
         }
     }
