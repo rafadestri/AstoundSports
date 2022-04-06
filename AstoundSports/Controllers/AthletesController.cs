@@ -94,6 +94,32 @@ namespace AstoundSports.Controllers
             return Ok(atheletsDto);
         }
 
+        [HttpGet("{athleteId}/burntCalories/{sportId}")]
+        public async Task<IActionResult> GetBurntCalories(Guid athleteId, Guid sportId)
+        {
+            var athlete = await _repository.Athlete.GetAthleteAsync(athleteId, trackChanges: false);
+
+            if (athlete == null)
+            {
+                _logger.LogInfo($"Athelte with id: {athleteId} doesn't exist in the database.");
+
+                return NotFound();
+            }
+
+            var sport = await _repository.Sport.GetSportAsync(sportId, trackChanges: false);
+
+            if (sport == null)
+            {
+                _logger.LogInfo($"Sport with id: {sportId} doesn't exist in the database.");
+
+                return NotFound();
+            }
+
+            var athleteDto = _mapper.Map<AthleteDto>(athlete);
+
+            return Ok(athleteDto);
+        }
+
         [HttpPatch("{id}")]
         public async Task<IActionResult> PartiallyUpdateAthlete(Guid id, [FromBody] JsonPatchDocument<AthleteForUpdateDto> patchDoc)
         {
