@@ -2,6 +2,7 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,39 @@ namespace AstoundSports.Controllers
             var atheletsDto = _mapper.Map<IEnumerable<AthleteDto>>(athletes);
 
             return Ok(atheletsDto);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PartiallyUpdateAthlete(Guid id, [FromBody] JsonPatchDocument<AthleteForUpdateDto> patchDoc)
+        {
+            if (patchDoc is null)
+            {
+                _logger.LogError("patchDoc object sent from client is null.");
+                return BadRequest("patchDoc object is null");
+            }
+
+            var athleteEntity = await _repository.Athlete.GetAthleteAsync(id, trackChanges: true);
+            if (athleteEntity == null)
+            {
+                _logger.LogInfo($"Athlete with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            var athleteToPAtch = _mapper.Map<AthleteForUpdateDto>(athleteEntity);
+
+            patchDoc.ApplyTo(athleteToPAtch, ModelState);
+
+            TryValidateModel(athleteToPAtch);
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the patch document");
+                return UnprocessableEntity(ModelState);
+            }
+
+            _mapper.Map(athleteToPAtch, athleteEntity);
+            await _repository.SaveAsync();
+
+            return NoContent();
         }
 
         [HttpPut("{id}")]
