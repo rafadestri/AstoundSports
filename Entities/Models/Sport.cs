@@ -12,8 +12,6 @@ namespace Entities.Models
         [Required(ErrorMessage = "Duration is a required field.")]
         public int Duration { get; set; }
 
-        public bool GroupSport { get => NumberOfPlayers > 1; }
-
         [Column("SportId")]
         public Guid Id { get; set; }
 
@@ -22,7 +20,5 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "Number of players is a required field.")]
         public int NumberOfPlayers { get; set; }
-
-        public int TotalEffort { get => NumberOfPlayers * Duration; }
     }
 }

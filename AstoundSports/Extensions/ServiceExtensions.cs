@@ -20,14 +20,11 @@ namespace AstoundSports.Extensions
                         .AllowAnyHeader());
                     });
 
-        public static void ConfigureIISIntegraiton(this IServiceCollection services) =>
-            services.Configure<IISOptions>(options => { });
+        public static void ConfigureIISIntegraiton(this IServiceCollection services) => services.Configure<IISOptions>(options => { });
 
-        public static void ConfigureLoggerService(this IServiceCollection services) =>
-            services.AddScoped<ILoggerManager, LoggerManager>();
+        public static void ConfigureLoggerService(this IServiceCollection services) => services.AddScoped<ILoggerManager, LoggerManager>();
 
-        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
-            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        public static void ConfigureRepositoryManager(this IServiceCollection services) => services.AddScoped<IRepositoryManager, RepositoryManager>();
 
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContext<RepositoryContext>(opts =>

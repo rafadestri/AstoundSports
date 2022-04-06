@@ -22,10 +22,5 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "Athlete surname is a required field.")]
         public string SurName { get; set; }
-
-        public override string ToString()
-        {
-            return $"{this.Name} {this.SurName}";
-        }
     }
 }

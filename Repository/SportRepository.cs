@@ -28,7 +28,7 @@ namespace Repository
         public async Task<Sport> GetSportAsync(Guid sportId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(sportId), trackChanges).SingleOrDefaultAsync();
 
-        public async Task<IEnumerable<Sport>> GetSports(bool trackChanges) => await FindAll(trackChanges)
+        public async Task<IEnumerable<Sport>> GetSportsAsync(bool trackChanges) => await FindAll(trackChanges)
             .OrderBy(c => c.Name)
             .ToListAsync();
 

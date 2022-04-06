@@ -13,7 +13,7 @@ namespace Contracts
 
         Task<Sport> GetSportAsync(Guid sportId, bool trackChanges);
 
-        Task<IEnumerable<Sport>> GetSports(bool trackChanges);
+        Task<IEnumerable<Sport>> GetSportsAsync(bool trackChanges);
 
         Task<IEnumerable<Sport>> GetSportsByIdAsync(IEnumerable<Guid> ids, bool trackChanges);
     }
