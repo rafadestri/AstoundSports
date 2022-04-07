@@ -107,4 +107,4 @@ On the screenshots below you can check the request/response from postman on all 
 ![image](https://user-images.githubusercontent.com/24480945/162106487-525a0904-b6d6-461b-a26a-bfea5bdb0031.png)
 
 **check if a given athlete can practice a given sport** `curl --location --request GET 'https://localhost:5001/api/athletes/{athleteId}/canPractice/{sportId}'`
-![image](https://user-images.githubusercontent.com/24480945/162106532-ca031eed-8e46-465f-9c8f-533909fe1d56.png)
+![image](https://user-images.githubusercontent.com/24480945/162106689-ea4b9daf-9b72-435c-bd90-083767a4e16d.png)
