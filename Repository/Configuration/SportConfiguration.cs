@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace Entities.Configuration
+namespace Repository.Configuration
 {
     public class SportConfiguration : IEntityTypeConfiguration<Sport>
     {

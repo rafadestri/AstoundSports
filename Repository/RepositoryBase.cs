@@ -1,5 +1,4 @@
 ﻿using Contracts;
-using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Repository
     {
         protected RepositoryContext RepositoryContext;
 
-        public RepositoryBase(RepositoryContext repositoryContext)
+        protected RepositoryBase(RepositoryContext repositoryContext)
         {
             RepositoryContext = repositoryContext;
         }

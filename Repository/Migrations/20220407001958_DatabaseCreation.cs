@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AstoundSports.Migrations
+namespace Repository.Migrations
 {
     public partial class DatabaseCreation : Migration
     {
@@ -43,9 +43,9 @@ namespace AstoundSports.Migrations
                 columns: new[] { "AthleteId", "Age", "Country", "MaximumCalories", "Name", "SurName" },
                 values: new object[,]
                 {
-                    { new Guid("2e235ac6-a3aa-40a4-a5eb-38a36afe4378"), 35, "BR", 100, "Audrey ", "Hughes" },
-                    { new Guid("22ab4e05-4acd-4235-9b99-1d012cd06bb4"), 20, "CO", 250, "Sue ", "Sharp" },
-                    { new Guid("74c00bd6-e657-49af-ae43-59bfc10c446b"), 40, "BR", 80, "Joseph ", "Sutherland" }
+                    { new Guid("f049f5a6-e1f4-4300-8f54-a44b63831a37"), 35, "BR", 1000, "Audrey", "Hughes" },
+                    { new Guid("1fdba9a7-58fa-4df3-87ec-59acaa2bcb55"), 20, "CO", 2500, "Sue", "Sharp" },
+                    { new Guid("11aa2e81-501e-46f4-a174-6c3dda4a9028"), 40, "BR", 800, "Joseph", "Sutherland" }
                 });
 
             migrationBuilder.InsertData(
@@ -53,9 +53,9 @@ namespace AstoundSports.Migrations
                 columns: new[] { "SportId", "CaloriesBurntByMinute", "Duration", "Name", "NumberOfPlayers" },
                 values: new object[,]
                 {
-                    { new Guid("c6c273b0-0ee3-4fd3-aa07-d1c781df1c61"), 10, 90, "Soccer", 24 },
-                    { new Guid("56e8d823-f384-4005-a4ed-27c4d0156fc0"), 10, 48, "Basket", 10 },
-                    { new Guid("998c6595-5bd1-45c4-b271-83a840b3b656"), 15, 30, "Table Tenis", 1 }
+                    { new Guid("69078b9a-eef0-4161-aeca-097056af10bf"), 10, 90, "Soccer", 24 },
+                    { new Guid("30f37dc3-6e2b-4b78-a172-a553d28a43ac"), 10, 48, "Basket", 10 },
+                    { new Guid("781f2e75-99bf-4b4a-847a-719f03a495bf"), 15, 30, "Table Tenis", 1 }
                 });
         }
 
