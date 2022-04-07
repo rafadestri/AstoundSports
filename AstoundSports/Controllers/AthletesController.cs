@@ -25,6 +25,33 @@ namespace AstoundSports.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("{athleteId}/canPractice/{sportId}")]
+        public async Task<IActionResult> CanPractice(Guid athleteId, Guid sportId)
+        {
+            var athlete = await _repository.Athlete.GetAthleteAsync(athleteId, trackChanges: false);
+
+            if (athlete == null)
+            {
+                _logger.LogInfo($"Athelte with id: {athleteId} doesn't exist in the database.");
+
+                return NotFound();
+            }
+
+            var sport = await _repository.Sport.GetSportAsync(sportId, trackChanges: false);
+
+            if (sport == null)
+            {
+                _logger.LogInfo($"Sport with id: {sportId} doesn't exist in the database.");
+
+                return NotFound();
+            }
+
+            var athleteDto = _mapper.Map<AthleteDto>(athlete);
+            athleteDto.CanPractice = athleteDto.MaximumCalories >= (sport.CaloriesBurntByMinute * sport.Duration);
+
+            return Ok($"Can {athleteDto.FullName} practice {sport.Name}?\n {(athleteDto.CanPractice ? "YES" : "NO")} ");
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAthlete([FromBody] AthleteForCreationDto athlete)
         {
@@ -116,8 +143,9 @@ namespace AstoundSports.Controllers
             }
 
             var athleteDto = _mapper.Map<AthleteDto>(athlete);
+            athleteDto.BurntCalories = sport.CaloriesBurntByMinute * athlete.MaximumCalories;
 
-            return Ok(athleteDto);
+            return Ok($"{athleteDto.FullName} has burnt {athleteDto.BurntCalories} practicing {sport.Name}");
         }
 
         [HttpPatch("{id}")]
