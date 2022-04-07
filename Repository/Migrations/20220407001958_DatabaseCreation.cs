@@ -1,10 +1,19 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Repository.Migrations
 {
     public partial class DatabaseCreation : Migration
     {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Athletes");
+
+            migrationBuilder.DropTable(
+                name: "Sports");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -57,15 +66,6 @@ namespace Repository.Migrations
                     { new Guid("30f37dc3-6e2b-4b78-a172-a553d28a43ac"), 10, 48, "Basket", 10 },
                     { new Guid("781f2e75-99bf-4b4a-847a-719f03a495bf"), 15, 30, "Table Tenis", 1 }
                 });
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Athletes");
-
-            migrationBuilder.DropTable(
-                name: "Sports");
         }
     }
 }

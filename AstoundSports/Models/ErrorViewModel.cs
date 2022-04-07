@@ -1,5 +1,3 @@
-using System;
-
 namespace AstoundSports.Models
 {
     public class ErrorViewModel

@@ -32,7 +32,6 @@ namespace AstoundSports
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -71,8 +70,7 @@ namespace AstoundSports
             {
                 config.RespectBrowserAcceptHeader = true;
                 config.ReturnHttpNotAcceptable = true;
-            }).AddNewtonsoftJson()
-             .AddXmlDataContractSerializerFormatters();
+            }).AddNewtonsoftJson();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
